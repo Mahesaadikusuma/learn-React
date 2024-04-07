@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function AuthLayouth(props) {
-  const { children, title } = props;
+function AuthLayouth({ children, title, type }) {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="w-full max-w-xs">
@@ -11,9 +11,33 @@ function AuthLayouth(props) {
         </p>
 
         {children}
+ 
+        <Navigation type={type}/>
       </div>
     </div>
   );
 }
+
+const Navigation = ({ type }) => {
+  if (type === "login") {
+    return (
+      <p className="text-sm mt-5 text-center ">
+        Dont Have an account?{" "}
+        <Link to={"/register"} className="font-bold text-blue-600">
+          Register
+        </Link>
+      </p>
+    );
+  } else {
+    return(
+      <p className="text-sm mt-5 text-center ">
+      already have an account? {" "}
+      <Link to={"/login"} className="font-bold text-blue-600">
+        Login
+      </Link>
+    </p>
+    )
+  }
+};
 
 export default AuthLayouth;
